@@ -158,10 +158,10 @@ Bool_t ePIC_DVCS_TASK::applyCuts_Photon(std::vector<P3EVector> scatg){
      // Reject based on photon x/y momentum - should correspond to semicircle of FEMC hit
 
      // X-DIRECTION - LEFT/RIGHT REJECTION
-     //if(scatg[0].Px() < 0) passCuts = kFALSE;
+     if(scatg[0].Px() < 0) passCuts = kFALSE;
      
      // Y-DIRECTION - TOP/BOTTOM REJECTION
-     if(scatg[0].Py() < 0) passCuts = kFALSE;
+     //if(scatg[0].Py() < 0) passCuts = kFALSE;
    }
    
    return passCuts;
@@ -608,8 +608,8 @@ void ePIC_DVCS_TASK::doAnalysis(){
   DVCSBinning binning;
   // NOTE: change this if your binning file lives elsewhere or is named per
   //       configuration, e.g. "bins_"+camp+"_"+energy+".txt".
-  TString sBinFile = "./binning/bins_"+sEnergy+".txt";
-  //TString sBinFile = "./binning/bins_9x130_q2int_tint.txt";
+  //TString sBinFile = "./binning/bins_"+sEnergy+".txt";
+  TString sBinFile = "./binning/bins_9x130_q2int_tint.txt";
   if(!binning.load(sBinFile.Data())){
     std::cerr << "[ePIC_DVCS] FATAL: could not load binning from " << sBinFile << std::endl;
     return;
